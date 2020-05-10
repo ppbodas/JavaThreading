@@ -1,11 +1,18 @@
 import java.util.Random;
 
-public class SomeRandomClass implements Runnable {
+public class SomeRandomClass {
     ThreadLocal<Integer> threadLocal = new ThreadLocal<>();
 
-    @Override public void run() {
-        threadLocal.set((new Random().nextInt()));
+    SomeRandomClass() {
+        threadLocal.set(new Random().nextInt());
+        System.out.println("Value form constructor " + threadLocal.get());
+    }
 
-        System.out.println("Random value " + threadLocal.get());
+    public void printValue() {
+        System.out.println("Value " + threadLocal.get());
+    }
+
+    public void setValue(final int value) {
+        threadLocal.set(value);
     }
 }
